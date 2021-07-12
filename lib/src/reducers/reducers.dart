@@ -4,6 +4,10 @@ import 'package:flutter_cool_weather/src/models/app_state.dart';
 import 'package:redux/redux.dart';
 
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
+  (AppState state, dynamic action) {
+    print(action);
+    return state;
+  },
   TypedReducer<AppState, GetLocation>(_getLocation),
   TypedReducer<AppState, GetLocationSuccessful>(_getLocationSuccessful),
   TypedReducer<AppState, GetLocationError>(_getLocationError),
@@ -13,14 +17,12 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
 ]);
 
 AppState _getLocation(AppState state, GetLocation action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b.isLoading = true;
   });
 }
 
 AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b
       ..location = action.location.toBuilder()
@@ -29,7 +31,6 @@ AppState _getLocationSuccessful(AppState state, GetLocationSuccessful action) {
 }
 
 AppState _getLocationError(AppState state, GetLocationError action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b
       ..error = action.error
@@ -38,14 +39,12 @@ AppState _getLocationError(AppState state, GetLocationError action) {
 }
 
 AppState _getWeather(AppState state, GetWeather action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b.isLoading = true;
   });
 }
 
 AppState _getWeatherSuccessful(AppState state, GetWeatherSuccessful action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b
       ..weather = action.weather.toBuilder()
@@ -54,7 +53,6 @@ AppState _getWeatherSuccessful(AppState state, GetWeatherSuccessful action) {
 }
 
 AppState _getWeatherError(AppState state, GetWeatherError action) {
-  print(action);
   return state.rebuild((AppStateBuilder b) {
     b
       ..error = action.error

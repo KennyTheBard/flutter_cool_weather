@@ -15,7 +15,8 @@ void main() {
   final WeatherApi weatherApi = WeatherApi(
       client: Client(),
       weatherApiUrl: 'https://api.weatherapi.com/v1/forecast.json',
-      weatherApiKey: '4305e859d9db460db5b182303211103');
+      weatherApiKey: '4305e859d9db460db5b182303211103',
+  );
   final AppMiddleware middleware = AppMiddleware(locationApi, weatherApi);
   final AppState initialState = AppState((AppStateBuilder b) {
     b

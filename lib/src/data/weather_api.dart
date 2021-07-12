@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_cool_weather/src/models/forecast_response.dart';
 import 'package:flutter_cool_weather/src/models/weather.dart';
 import 'package:http/http.dart';
 
@@ -24,12 +23,12 @@ class WeatherApi {
       throw StateError('Failed to get weather');
     }
 
-    final ForecastResponse resp = ForecastResponse.fromJson(jsonDecode(response.body));
+    final dynamic data = jsonDecode(response.body);
 
     return Weather((WeatherBuilder b) {
       b
-        ..temperature = resp.current.temperature
-        ..weatherCondition = resp.current.condition.name;
+        ..temperature = data['current']['temperature'] as double
+        ..weatherCondition = data['current']['condition']['name'] as String;
     });
   }
 }

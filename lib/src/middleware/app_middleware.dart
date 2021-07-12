@@ -28,6 +28,8 @@ class AppMiddleware {
       print(location);
 
       store.dispatch(GetLocationSuccessful(location));
+
+      store.dispatch(GetWeather());
     } catch (error) {
       store.dispatch(GetLocationError(error));
     }
@@ -36,17 +38,8 @@ class AppMiddleware {
   Future<void> _getWeather(Store<AppState> store, GetWeather action, NextDispatcher next) async {
     next(action);
 
-    Location location;
     try {
-      location = await _locationApi.getLocation();
-      store.dispatch(GetLocationSuccessful(location));
-    } catch (error) {
-      store.dispatch(GetLocationError(error));
-      return;
-    }
-
-    try {
-      final Weather weather = await _weatherApi.getForecast('${location.city}%20${location.country}');
+      final Weather weather = await _weatherApi.getForecast('${store.state.location!.city}%20${store.state.location!.country}');
       store.dispatch(GetWeatherSuccessful(weather));
     } catch (error) {
       store.dispatch(GetWeatherError(error));

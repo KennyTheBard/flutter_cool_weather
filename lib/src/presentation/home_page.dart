@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cool_weather/src/actions/get_location.dart';
 import 'package:flutter_cool_weather/src/actions/get_weather.dart';
 import 'package:flutter_cool_weather/src/containers/is_loading_container.dart';
 import 'package:flutter_cool_weather/src/containers/location_container.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   void _loadWeather() {
-    StoreProvider.of<AppState>(context).dispatch(GetWeather());
+    StoreProvider.of<AppState>(context).dispatch(GetLocation());
   }
 
   @override
@@ -52,9 +53,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _loadWeather();
-        },
+        onPressed: _loadWeather,
         child: const Icon(Icons.gps_fixed),
         backgroundColor: Colors.blue,
       ),
