@@ -25,7 +25,6 @@ class AppMiddleware {
 
     try {
       final Location location = await _locationApi.getLocation();
-      print(location);
 
       store.dispatch(GetLocationSuccessful(location));
 
@@ -39,7 +38,7 @@ class AppMiddleware {
     next(action);
 
     try {
-      final Weather weather = await _weatherApi.getForecast('${store.state.location!.city}%20${store.state.location!.country}');
+      final Weather weather = await _weatherApi.getForecast(store.state.location!);
       store.dispatch(GetWeatherSuccessful(weather));
     } catch (error) {
       store.dispatch(GetWeatherError(error));

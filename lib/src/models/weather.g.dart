@@ -19,9 +19,11 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'temperature',
-      serializers.serialize(object.temperature, specifiedType: const FullType(double)),
+      serializers.serialize(object.temperature,
+          specifiedType: const FullType(double)),
       'weatherCondition',
-      serializers.serialize(object.weatherCondition, specifiedType: const FullType(String)),
+      serializers.serialize(object.weatherCondition,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -39,10 +41,12 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
       final Object? value = iterator.current;
       switch (key) {
         case 'temperature':
-          result.temperature = serializers.deserialize(value, specifiedType: const FullType(double)) as double;
+          result.temperature = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
           break;
         case 'weatherCondition':
-          result.weatherCondition = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.weatherCondition = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -57,15 +61,20 @@ class _$Weather extends Weather {
   @override
   final String weatherCondition;
 
-  factory _$Weather([void Function(WeatherBuilder)? updates]) => (new WeatherBuilder()..update(updates)).build();
+  factory _$Weather([void Function(WeatherBuilder)? updates]) =>
+      (new WeatherBuilder()..update(updates)).build();
 
-  _$Weather._({required this.temperature, required this.weatherCondition}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(temperature, 'Weather', 'temperature');
-    BuiltValueNullFieldError.checkNotNull(weatherCondition, 'Weather', 'weatherCondition');
+  _$Weather._({required this.temperature, required this.weatherCondition})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        temperature, 'Weather', 'temperature');
+    BuiltValueNullFieldError.checkNotNull(
+        weatherCondition, 'Weather', 'weatherCondition');
   }
 
   @override
-  Weather rebuild(void Function(WeatherBuilder) updates) => (toBuilder()..update(updates)).build();
+  Weather rebuild(void Function(WeatherBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
   WeatherBuilder toBuilder() => new WeatherBuilder()..replace(this);
@@ -73,7 +82,9 @@ class _$Weather extends Weather {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Weather && temperature == other.temperature && weatherCondition == other.weatherCondition;
+    return other is Weather &&
+        temperature == other.temperature &&
+        weatherCondition == other.weatherCondition;
   }
 
   @override
@@ -99,7 +110,8 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
 
   String? _weatherCondition;
   String? get weatherCondition => _$this._weatherCondition;
-  set weatherCondition(String? weatherCondition) => _$this._weatherCondition = weatherCondition;
+  set weatherCondition(String? weatherCondition) =>
+      _$this._weatherCondition = weatherCondition;
 
   WeatherBuilder();
 
@@ -128,8 +140,10 @@ class WeatherBuilder implements Builder<Weather, WeatherBuilder> {
   _$Weather build() {
     final _$result = _$v ??
         new _$Weather._(
-            temperature: BuiltValueNullFieldError.checkNotNull(temperature, 'Weather', 'temperature'),
-            weatherCondition: BuiltValueNullFieldError.checkNotNull(weatherCondition, 'Weather', 'weatherCondition'));
+            temperature: BuiltValueNullFieldError.checkNotNull(
+                temperature, 'Weather', 'temperature'),
+            weatherCondition: BuiltValueNullFieldError.checkNotNull(
+                weatherCondition, 'Weather', 'weatherCondition'));
     replace(_$result);
     return _$result;
   }

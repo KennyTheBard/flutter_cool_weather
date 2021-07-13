@@ -19,20 +19,30 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'isLoading',
-      serializers.serialize(object.isLoading, specifiedType: const FullType(bool)),
+      serializers.serialize(object.isLoading,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.location;
     if (value != null) {
-      result..add('location')..add(serializers.serialize(value, specifiedType: const FullType(Location)));
+      result
+        ..add('location')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Location)));
     }
     value = object.weather;
     if (value != null) {
-      result..add('weather')..add(serializers.serialize(value, specifiedType: const FullType(Weather)));
+      result
+        ..add('weather')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Weather)));
     }
     value = object.error;
     if (value != null) {
-      result..add('error')..add(serializers.serialize(value, specifiedType: const FullType(Object)));
+      result
+        ..add('error')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Object)));
     }
     return result;
   }
@@ -49,16 +59,20 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       final Object? value = iterator.current;
       switch (key) {
         case 'isLoading':
-          result.isLoading = serializers.deserialize(value, specifiedType: const FullType(bool)) as bool;
+          result.isLoading = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
           break;
         case 'location':
-          result.location.replace(serializers.deserialize(value, specifiedType: const FullType(Location))! as Location);
+          result.location.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Location))! as Location);
           break;
         case 'weather':
-          result.weather.replace(serializers.deserialize(value, specifiedType: const FullType(Weather))! as Weather);
+          result.weather.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Weather))! as Weather);
           break;
         case 'error':
-          result.error = serializers.deserialize(value, specifiedType: const FullType(Object));
+          result.error = serializers.deserialize(value,
+              specifiedType: const FullType(Object));
           break;
       }
     }
@@ -77,14 +91,18 @@ class _$AppState extends AppState {
   @override
   final Object? error;
 
-  factory _$AppState([void Function(AppStateBuilder)? updates]) => (new AppStateBuilder()..update(updates)).build();
+  factory _$AppState([void Function(AppStateBuilder)? updates]) =>
+      (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({required this.isLoading, this.location, this.weather, this.error}) : super._() {
+  _$AppState._(
+      {required this.isLoading, this.location, this.weather, this.error})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading');
   }
 
   @override
-  AppState rebuild(void Function(AppStateBuilder) updates) => (toBuilder()..update(updates)).build();
+  AppState rebuild(void Function(AppStateBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
   AppStateBuilder toBuilder() => new AppStateBuilder()..replace(this);
@@ -101,7 +119,10 @@ class _$AppState extends AppState {
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc($jc(0, isLoading.hashCode), location.hashCode), weather.hashCode), error.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, isLoading.hashCode), location.hashCode),
+            weather.hashCode),
+        error.hashCode));
   }
 
   @override
@@ -165,7 +186,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     try {
       _$result = _$v ??
           new _$AppState._(
-              isLoading: BuiltValueNullFieldError.checkNotNull(isLoading, 'AppState', 'isLoading'),
+              isLoading: BuiltValueNullFieldError.checkNotNull(
+                  isLoading, 'AppState', 'isLoading'),
               location: _location?.build(),
               weather: _weather?.build(),
               error: error);
@@ -177,7 +199,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _$failedField = 'weather';
         _weather?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError('AppState', _$failedField, e.toString());
+        throw new BuiltValueNestedFieldError(
+            'AppState', _$failedField, e.toString());
       }
       rethrow;
     }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_cool_weather/src/models/location.dart';
 import 'package:flutter_cool_weather/src/models/weather.dart';
 import 'package:http/http.dart';
 
@@ -15,9 +16,9 @@ class WeatherApi {
 
   final String _weatherApiKey;
 
-  Future<Weather> getForecast(String location) async {
+  Future<Weather> getForecast(Location location) async {
     final Response response =
-        await _client.get(Uri.parse(_weatherApiUrl + '?key=$_weatherApiKey&q=$location&days=1&aqi=no&alerts=no'));
+        await _client.get(Uri.parse(_weatherApiUrl + '?key=$_weatherApiKey&q=${location.city}%20${location.country}&days=1&aqi=no&alerts=no'));
 
     if (response.statusCode >= 300) {
       throw StateError('Failed to get weather');
@@ -27,8 +28,8 @@ class WeatherApi {
 
     return Weather((WeatherBuilder b) {
       b
-        ..temperature = data['current']['temperature'] as double
-        ..weatherCondition = data['current']['condition']['name'] as String;
+        ..temperature = data['current']['temp_c'] as double
+        ..weatherCondition = data['current']['condition']['text'] as String;
     });
   }
 }
