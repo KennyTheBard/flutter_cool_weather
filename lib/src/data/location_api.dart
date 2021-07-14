@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_cool_weather/src/models/location.dart';
+import 'package:flutter_cool_weather/src/models/index.dart';
 import 'package:http/http.dart';
 
 class LocationApi {

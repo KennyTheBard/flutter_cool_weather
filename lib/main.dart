@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cool_weather/src/actions/get_location.dart';
+import 'package:flutter_cool_weather/src/actions/index.dart';
 import 'package:flutter_cool_weather/src/data/location_api.dart';
 import 'package:flutter_cool_weather/src/data/weather_api.dart';
 import 'package:flutter_cool_weather/src/epics/app_epic.dart';
-import 'package:flutter_cool_weather/src/middleware/app_middleware.dart';
-import 'package:flutter_cool_weather/src/models/app_state.dart';
+import 'package:flutter_cool_weather/src/models/index.dart';
 import 'package:flutter_cool_weather/src/presentation/home_page.dart';
 import 'package:flutter_cool_weather/src/reducers/reducers.dart';
 import 'package:http/http.dart';
@@ -19,7 +18,6 @@ void main() {
     weatherApiUrl: 'https://api.weatherapi.com/v1/forecast.json',
     weatherApiKey: '4305e859d9db460db5b182303211103',
   );
-  final AppMiddleware middleware = AppMiddleware(locationApi, weatherApi);
   final AppEpic epic = AppEpic(locationApi, weatherApi);
   final AppState initialState = AppState((AppStateBuilder b) {
     b
@@ -36,7 +34,7 @@ void main() {
     ],
   );
 
-  store.dispatch(GetLocation());
+  store.dispatch(const GetLocation());
 
   runApp(CoolWeather(store: store));
 }
